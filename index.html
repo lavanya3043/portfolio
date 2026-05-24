@@ -10,18 +10,22 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
-
 .cursor{position:fixed;width:12px;height:12px;background:var(--coral);border-radius:50%;pointer-events:none;z-index:9999;transition:transform 0.1s;mix-blend-mode:multiply;}
 .cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid var(--coral);border-radius:50%;pointer-events:none;z-index:9998;transition:all 0.15s ease;mix-blend-mode:multiply;}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 3rem;background:rgba(250,246,240,0.96);backdrop-filter:blur(12px);border-bottom:0.5px solid rgba(26,16,24,0.1);}
 .nav-logo{font-family:'Space Mono',monospace;font-size:0.85rem;letter-spacing:0.1em;color:var(--ink);text-decoration:none;font-weight:700;}
-.nav-links{display:flex;gap:2.5rem;list-style:none;}
-.nav-links a{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;color:var(--ink);text-decoration:none;text-transform:uppercase;transition:color 0.2s;position:relative;padding-bottom:4px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;color:var(--ink);text-decoration:none;text-transform:uppercase;transition:color 0.2s;position:relative;padding-bottom:4px;}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--coral);transition:width 0.25s;}
 .nav-links a:hover,.nav-links a.active{color:var(--coral);}
 .nav-links a:hover::after,.nav-links a.active::after{width:100%;}
 section{scroll-margin-top:70px;}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.section-label{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+.section-label::before{content:'';width:30px;height:1.5px;background:var(--coral);display:inline-block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:1.5rem;}
+.section-title em{color:var(--coral);}
 
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
@@ -37,7 +41,6 @@ section{scroll-margin-top:70px;}
 .btn-primary:hover{background:var(--ink);transform:translate(-3px,-3px);}
 .btn-secondary{display:inline-block;border:1.5px solid var(--ink);color:var(--ink);padding:0.9rem 2rem;font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.25s;}
 .btn-secondary:hover{background:var(--ink);color:var(--cream);transform:translate(-3px,-3px);}
-
 .hero-right{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-blob{position:absolute;width:500px;height:500px;background:var(--mauve);opacity:0.12;border-radius:60% 40% 70% 30%/50% 60% 40% 50%;animation:morph 8s ease-in-out infinite;}
 @keyframes morph{0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%}33%{border-radius:30% 70% 40% 60%/60% 30% 70% 40%}66%{border-radius:50% 50% 30% 70%/40% 70% 30% 60%}}
@@ -48,8 +51,8 @@ section{scroll-margin-top:70px;}
 .hero-card .sub{font-size:0.72rem;color:#7a6a78;margin-bottom:1.25rem;font-family:'Space Mono',monospace;}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .stat-box{background:var(--cream);padding:0.75rem;text-align:center;}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--coral);line-height:1.1;}
-.stat-label{font-family:'Space Mono',monospace;font-size:0.58rem;color:#7a6a78;text-transform:uppercase;letter-spacing:0.05em;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--coral);line-height:1.2;}
+.stat-label{font-family:'Space Mono',monospace;font-size:0.58rem;color:#7a6a78;text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;}
 .deco-circle{position:absolute;border-radius:50%;border:1.5px solid;opacity:0.22;pointer-events:none;}
 
 /* MARQUEE */
@@ -58,14 +61,6 @@ section{scroll-margin-top:70px;}
 .marquee-track span{font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream);padding:0 2rem;}
 .marquee-track span.sep{color:var(--coral);}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* SHARED */
-.section-label{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
-.section-label::before{content:'';width:30px;height:1.5px;background:var(--coral);display:inline-block;}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:1.5rem;}
-.section-title em{color:var(--coral);}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
 
 /* ABOUT */
 .about{padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;}
@@ -81,76 +76,88 @@ section{scroll-margin-top:70px;}
 .about-mini-card h4{font-family:'Playfair Display',serif;font-size:0.95rem;margin-bottom:0.2rem;}
 .about-mini-card p{font-size:0.72rem;color:#7a6a78;font-family:'Space Mono',monospace;line-height:1.5;}
 
-/* PROJECTS */
-.projects-wrap{background:var(--ink);padding:7rem 3rem;position:relative;overflow:hidden;}
-.projects-wrap::before{content:'WORK';position:absolute;font-family:'Playfair Display',serif;font-size:22vw;font-weight:900;color:white;opacity:0.03;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
-.projects-header{max-width:1200px;margin:0 auto 4rem;}
-.projects-wrap .section-label{color:var(--amber);}
-.projects-wrap .section-label::before{background:var(--amber);}
-.projects-wrap .section-title{color:var(--cream);}
-.projects-wrap .section-title em{color:var(--amber);}
-.projects-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+/* EXPERIENCE */
+.experience-wrap{background:var(--ink);padding:7rem 3rem;position:relative;overflow:hidden;}
+.experience-wrap .section-label{color:var(--amber);}
+.experience-wrap .section-label::before{background:var(--amber);}
+.experience-wrap .section-title{color:var(--cream);}
+.experience-wrap .section-title em{color:var(--amber);}
+.exp-card{max-width:1200px;margin:0 auto;border:1px solid rgba(244,162,97,0.25);padding:2.5rem;position:relative;overflow:hidden;background:rgba(244,162,97,0.04);transition:all 0.3s;}
+.exp-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--amber);}
+.exp-card:hover{border-color:rgba(244,162,97,0.5);transform:translateY(-3px);}
+.exp-header{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;margin-bottom:2rem;}
+.exp-role{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);margin-bottom:0.4rem;}
+.exp-company{font-family:'Space Mono',monospace;font-size:0.82rem;color:var(--amber);letter-spacing:0.08em;margin-bottom:0.25rem;}
+.exp-meta{font-family:'Space Mono',monospace;font-size:0.7rem;color:rgba(250,246,240,0.4);letter-spacing:0.06em;}
+.exp-duration{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:rgba(244,162,97,0.3);text-align:right;line-height:1;}
+.exp-duration-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(250,246,240,0.3);text-transform:uppercase;letter-spacing:0.1em;text-align:right;margin-top:0.25rem;}
+.exp-departments{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.exp-dept{background:rgba(250,246,240,0.04);border:1px solid rgba(250,246,240,0.08);padding:1.2rem 1rem;transition:all 0.25s;}
+.exp-dept:hover{background:rgba(244,162,97,0.08);border-color:rgba(244,162,97,0.2);}
+.exp-dept-icon{font-size:1.4rem;display:block;margin-bottom:0.5rem;}
+.exp-dept-name{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:0.4rem;}
+.exp-dept-desc{font-size:0.78rem;color:rgba(250,246,240,0.5);line-height:1.6;}
+.exp-highlights{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.exp-highlight{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;border:1px solid rgba(244,162,97,0.25);color:rgba(244,162,97,0.7);letter-spacing:0.06em;}
 
-/* FLAGSHIP PROJECT */
-.project-card-flagship{grid-column:span 2;border:1px solid rgba(232,85,62,0.3);padding:2.5rem;position:relative;overflow:hidden;transition:all 0.3s;cursor:default;background:rgba(232,85,62,0.04);}
+/* PROJECTS */
+.projects-wrap{background:var(--cream);padding:7rem 3rem;position:relative;overflow:hidden;}
+.projects-wrap::before{content:'WORK';position:absolute;font-family:'Playfair Display',serif;font-size:22vw;font-weight:900;color:var(--ink);opacity:0.03;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.projects-header{max-width:1200px;margin:0 auto 4rem;}
+.projects-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.project-card-flagship{grid-column:span 2;border:1.5px solid rgba(232,85,62,0.25);padding:2.5rem;position:relative;overflow:hidden;transition:all 0.3s;background:rgba(232,85,62,0.03);}
 .project-card-flagship::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--coral);}
-.project-card-flagship:hover{border-color:rgba(232,85,62,0.6);transform:translateY(-4px);}
+.project-card-flagship:hover{border-color:rgba(232,85,62,0.5);transform:translateY(-4px);}
 .flagship-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
 .flagship-badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--coral);margin-bottom:1rem;}
 .flagship-badge::before{content:'★';font-size:0.8rem;}
-.flagship-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--cream);line-height:1.2;margin-bottom:1rem;}
-.flagship-desc{font-size:0.9rem;color:rgba(250,246,240,0.6);line-height:1.8;margin-bottom:1.5rem;}
+.flagship-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--ink);line-height:1.2;margin-bottom:1rem;}
+.flagship-desc{font-size:0.9rem;color:#5a4a58;line-height:1.8;margin-bottom:1.5rem;}
 .flagship-right{display:flex;flex-direction:column;gap:1rem;}
-.flagship-stat{background:rgba(232,85,62,0.1);border:1px solid rgba(232,85,62,0.2);padding:1.2rem 1.5rem;}
+.flagship-stat{background:rgba(232,85,62,0.06);border:1px solid rgba(232,85,62,0.15);padding:1.2rem 1.5rem;}
 .flagship-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--coral);line-height:1;}
-.flagship-stat-label{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(250,246,240,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem;}
-
-.project-card{border:1px solid rgba(250,246,240,0.12);padding:2rem;position:relative;overflow:hidden;transition:all 0.3s;cursor:default;}
+.flagship-stat-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:#7a6a78;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.25rem;}
+.project-card{border:1.5px solid rgba(26,16,24,0.1);padding:2rem;position:relative;overflow:hidden;transition:all 0.3s;cursor:default;background:white;}
 .project-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;}
-.project-card:hover{border-color:transparent;transform:translateY(-5px);}
+.project-card:hover{border-color:transparent;transform:translateY(-5px);box-shadow:0 20px 60px rgba(26,16,24,0.08);}
 .project-card:hover::before{opacity:1;}
-.project-card:nth-child(2)::before{background:linear-gradient(135deg,rgba(42,157,143,0.14),transparent)}
-.project-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(181,103,154,0.14),transparent)}
-.project-card:nth-child(4)::before{background:linear-gradient(135deg,rgba(155,137,196,0.14),transparent)}
-.project-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(250,246,240,0.18);line-height:1;margin-bottom:1rem;}
+.project-card:nth-child(2)::before{background:linear-gradient(135deg,rgba(42,157,143,0.06),transparent)}
+.project-card:nth-child(3)::before{background:linear-gradient(135deg,rgba(181,103,154,0.06),transparent)}
+.project-card:nth-child(4)::before{background:linear-gradient(135deg,rgba(155,137,196,0.06),transparent)}
+.project-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:transparent;-webkit-text-stroke:1px rgba(26,16,24,0.12);line-height:1;margin-bottom:1rem;}
 .project-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.8rem;margin-bottom:1rem;}
-.tag-coral{background:rgba(232,85,62,0.18);color:var(--coral)}.tag-teal{background:rgba(42,157,143,0.18);color:#4fd1c5}.tag-mauve{background:rgba(181,103,154,0.18);color:#d4a6c4}.tag-lavender{background:rgba(155,137,196,0.18);color:var(--lavender)}
-.project-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);margin-bottom:0.75rem;line-height:1.25;}
-.project-desc{font-size:0.85rem;color:rgba(250,246,240,0.55);line-height:1.75;margin-bottom:1.25rem;}
+.tag-teal{background:rgba(42,157,143,0.1);color:var(--teal)}.tag-mauve{background:rgba(181,103,154,0.1);color:var(--mauve)}.tag-lavender{background:rgba(155,137,196,0.1);color:var(--lavender)}
+.project-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);margin-bottom:0.75rem;line-height:1.25;}
+.project-desc{font-size:0.85rem;color:#5a4a58;line-height:1.75;margin-bottom:1.25rem;}
 .project-tech{display:flex;flex-wrap:wrap;gap:0.4rem;}
-.tech-chip{font-family:'Space Mono',monospace;font-size:0.62rem;padding:0.22rem 0.6rem;border:1px solid rgba(250,246,240,0.18);color:rgba(250,246,240,0.45);letter-spacing:0.04em;}
+.tech-chip{font-family:'Space Mono',monospace;font-size:0.62rem;padding:0.22rem 0.6rem;border:1px solid rgba(26,16,24,0.15);color:#7a6a78;letter-spacing:0.04em;}
 
-/* SKILLS — chips instead of bars */
-.skills-wrap{padding:7rem 3rem;max-width:1200px;margin:0 auto;}
-.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:3rem;}
-.skill-group-title{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1.5px solid var(--ink);display:flex;align-items:center;gap:0.5rem;}
+/* SKILLS */
+.skills-wrap{padding:7rem 3rem;background:var(--ink);position:relative;}
+.skills-wrap .section-label{color:var(--lavender);}
+.skills-wrap .section-label::before{background:var(--lavender);}
+.skills-wrap .section-title{color:var(--cream);}
+.skills-wrap .section-title em{color:var(--lavender);}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-top:3rem;max-width:1200px;margin-left:auto;margin-right:auto;}
+.skill-group-title{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1.5px solid rgba(250,246,240,0.15);display:flex;align-items:center;gap:0.5rem;color:var(--cream);}
 .skill-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
 .skill-chips{display:flex;flex-wrap:wrap;gap:0.5rem;}
-.skill-chip{font-family:'Space Mono',monospace;font-size:0.68rem;padding:0.45rem 0.9rem;border:1.5px solid var(--ink);letter-spacing:0.05em;transition:all 0.2s;cursor:default;}
-.skill-chip:hover{color:var(--cream);}
-.chip-coral:hover{background:var(--coral);border-color:var(--coral);}
-.chip-teal:hover{background:var(--teal);border-color:var(--teal);}
-.chip-lavender:hover{background:var(--lavender);border-color:var(--lavender);}
+.skill-chip{font-family:'Space Mono',monospace;font-size:0.68rem;padding:0.45rem 0.9rem;border:1px solid rgba(250,246,240,0.15);letter-spacing:0.05em;transition:all 0.2s;cursor:default;color:rgba(250,246,240,0.6);}
+.chip-coral:hover{background:var(--coral);border-color:var(--coral);color:white;}
+.chip-teal:hover{background:var(--teal);border-color:var(--teal);color:white;}
+.chip-lavender:hover{background:var(--lavender);border-color:var(--lavender);color:white;}
 
 /* EDUCATION */
-.education-wrap{padding:7rem 3rem;background:var(--ink);position:relative;overflow:hidden;}
-.education-wrap::before{content:'EDU';position:absolute;font-family:'Playfair Display',serif;font-size:22vw;font-weight:900;color:white;opacity:0.03;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
-.education-wrap .section-label{color:var(--teal);}
-.education-wrap .section-label::before{background:var(--teal);}
-.education-wrap .section-title{color:var(--cream);}
-.education-wrap .section-title em{color:var(--teal);}
-.education-timeline{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:0;}
-.edu-item{display:grid;grid-template-columns:200px 1fr;gap:3rem;align-items:start;position:relative;padding:2.5rem 0;border-bottom:0.5px solid rgba(250,246,240,0.08);}
+.education-wrap{padding:7rem 3rem;max-width:1200px;margin:0 auto;}
+.education-timeline{display:flex;flex-direction:column;gap:0;margin-top:3rem;}
+.edu-item{display:grid;grid-template-columns:180px 1fr;gap:3rem;align-items:start;padding:2.5rem 0;border-bottom:0.5px solid rgba(26,16,24,0.1);}
 .edu-item:last-child{border-bottom:none;}
-.edu-year{font-family:'Space Mono',monospace;font-size:0.75rem;letter-spacing:0.1em;color:rgba(250,246,240,0.35);text-transform:uppercase;padding-top:0.25rem;}
-.edu-year span{display:block;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal);letter-spacing:0;margin-bottom:0.25rem;}
-.edu-content{}
-.edu-degree{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);margin-bottom:0.35rem;line-height:1.2;}
-.edu-school{font-family:'Space Mono',monospace;font-size:0.75rem;color:rgba(250,246,240,0.5);letter-spacing:0.05em;margin-bottom:1rem;}
-.edu-score{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--coral);}
-.edu-score-label{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(250,246,240,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-left:0.25rem;font-weight:400;font-style:normal;}
-.edu-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
-.edu-tag{font-family:'Space Mono',monospace;font-size:0.62rem;padding:0.3rem 0.75rem;border:1px solid rgba(42,157,143,0.3);color:rgba(42,157,143,0.7);letter-spacing:0.05em;}
+.edu-year{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;color:#7a6a78;text-transform:uppercase;padding-top:0.35rem;}
+.edu-year span{display:block;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--coral);letter-spacing:0;margin-bottom:0.2rem;line-height:1;}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:0.35rem;line-height:1.2;}
+.edu-school{font-family:'Space Mono',monospace;font-size:0.72rem;color:#7a6a78;letter-spacing:0.04em;margin-bottom:1rem;line-height:1.6;}
+.edu-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;}
+.edu-tag{font-family:'Space Mono',monospace;font-size:0.62rem;padding:0.3rem 0.75rem;border:1px solid rgba(42,157,143,0.25);color:var(--teal);letter-spacing:0.04em;}
 
 /* CREATIVE */
 .creative-wrap{background:var(--ink);padding:7rem 3rem;position:relative;overflow:hidden;}
@@ -161,7 +168,7 @@ section{scroll-margin-top:70px;}
 .creative-intro{font-size:0.97rem;line-height:1.8;color:rgba(250,246,240,0.55);max-width:600px;margin-bottom:3rem;}
 .creative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1200px;margin:0 auto;}
 
-/* Poetry card — special treatment */
+/* Poetry — special wide card */
 .poetry-card{grid-column:span 2;border:1px solid rgba(181,103,154,0.3);padding:2.5rem;position:relative;overflow:hidden;transition:all 0.3s;background:rgba(181,103,154,0.04);}
 .poetry-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--mauve),var(--lavender));}
 .poetry-card:hover{border-color:rgba(181,103,154,0.5);transform:translateY(-4px);}
@@ -169,7 +176,7 @@ section{scroll-margin-top:70px;}
 .poetry-icon{font-size:3rem;display:block;margin-bottom:1rem;}
 .poetry-title{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.75rem;}
 .poetry-desc{font-size:0.88rem;line-height:1.8;color:rgba(250,246,240,0.55);}
-.poetry-sample{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(250,246,240,0.4);line-height:1.9;border-left:2px solid var(--mauve);padding-left:1.5rem;}
+.poetry-sample{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:rgba(250,246,240,0.38);line-height:2;border-left:2px solid var(--mauve);padding-left:1.5rem;}
 
 .creative-card{padding:2rem 1.75rem;border:1px solid rgba(250,246,240,0.1);position:relative;transition:all 0.3s;overflow:hidden;}
 .creative-card::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;opacity:0.7;}
@@ -178,14 +185,17 @@ section{scroll-margin-top:70px;}
 .creative-icon{font-size:2.2rem;margin-bottom:1rem;display:block;line-height:1;}
 .creative-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--cream);margin-bottom:0.6rem;}
 .creative-desc{font-size:0.82rem;line-height:1.75;color:rgba(250,246,240,0.52);}
-.creative-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:0.82rem;color:rgba(250,246,240,0.35);margin-top:0.75rem;line-height:1.6;border-left:2px solid rgba(250,246,240,0.15);padding-left:0.75rem;}
-.tinker-card{border:1px solid rgba(42,157,143,0.25);padding:2rem 2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;transition:all 0.3s;position:relative;overflow:hidden;background:rgba(42,157,143,0.04);}
+.creative-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:0.8rem;color:rgba(250,246,240,0.32);margin-top:0.75rem;line-height:1.6;border-left:2px solid rgba(250,246,240,0.12);padding-left:0.75rem;}
+
+/* Hardware tinkering — spans full row */
+.tinker-card{grid-column:span 3;border:1px solid rgba(42,157,143,0.25);padding:2rem 2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;transition:all 0.3s;position:relative;overflow:hidden;background:rgba(42,157,143,0.04);}
 .tinker-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--teal);}
 .tinker-card:hover{border-color:rgba(42,157,143,0.45);transform:translateY(-4px);}
 .tinker-icon{font-size:3.5rem;line-height:1;}
 .tinker-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:0.5rem;}
 .tinker-desc{font-size:0.85rem;line-height:1.8;color:rgba(250,246,240,0.52);}
-.tinker-tag{display:inline-block;margin-top:0.75rem;font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.8rem;background:rgba(42,157,143,0.18);color:#4fd1c5;}
+.tinker-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;}
+.tinker-tag{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.28rem 0.7rem;background:rgba(42,157,143,0.15);color:#4fd1c5;border:1px solid rgba(42,157,143,0.2);}
 
 /* CONTACT */
 .contact-wrap{padding:7rem 3rem;text-align:center;position:relative;overflow:hidden;}
@@ -210,6 +220,7 @@ footer span{color:var(--coral);}
   <a href="#hero" class="nav-logo">LR_</a>
   <ul class="nav-links">
     <li><a href="#about" data-section="about">About</a></li>
+    <li><a href="#experience" data-section="experience">Experience</a></li>
     <li><a href="#projects" data-section="projects">Projects</a></li>
     <li><a href="#skills" data-section="skills">Skills</a></li>
     <li><a href="#education" data-section="education">Education</a></li>
@@ -242,7 +253,7 @@ footer span{color:var(--coral);}
         <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Live Projects</div></div>
         <div class="stat-box"><div class="stat-num">730</div><div class="stat-label">Chess Rating</div></div>
         <div class="stat-box"><div class="stat-num">ECE '26</div><div class="stat-label">Graduate</div></div>
-        <div class="stat-box"><div class="stat-num" style="font-size:0.9rem;padding-top:4px;">Open to<br>Work</div><div class="stat-label">Hire Me</div></div>
+        <div class="stat-box"><div class="stat-num" style="font-size:1rem;padding-top:3px;">Open to<br>Work ✦</div><div class="stat-label">Hire Me</div></div>
       </div>
     </div>
   </div>
@@ -251,8 +262,8 @@ footer span{color:var(--coral);}
 <!-- MARQUEE -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <span>FPGA Design</span><span class="sep">✦</span><span>MicroBlaze</span><span class="sep">✦</span><span>RTL / Verilog</span><span class="sep">✦</span><span>Raspberry Pi Pico H</span><span class="sep">✦</span><span>IoT Systems</span><span class="sep">✦</span><span>Reinforcement Learning</span><span class="sep">✦</span><span>OpenCV · EasyOCR</span><span class="sep">✦</span><span>Firebase</span><span class="sep">✦</span><span>VLSI Design</span><span class="sep">✦</span><span>Python · C</span><span class="sep">✦</span>
-    <span>FPGA Design</span><span class="sep">✦</span><span>MicroBlaze</span><span class="sep">✦</span><span>RTL / Verilog</span><span class="sep">✦</span><span>Raspberry Pi Pico H</span><span class="sep">✦</span><span>IoT Systems</span><span class="sep">✦</span><span>Reinforcement Learning</span><span class="sep">✦</span><span>OpenCV · EasyOCR</span><span class="sep">✦</span><span>Firebase</span><span class="sep">✦</span><span>VLSI Design</span><span class="sep">✦</span><span>Python · C</span><span class="sep">✦</span>
+    <span>FPGA Design</span><span class="sep">✦</span><span>MicroBlaze</span><span class="sep">✦</span><span>RTL / Verilog</span><span class="sep">✦</span><span>Raspberry Pi Pico H</span><span class="sep">✦</span><span>IoT Systems</span><span class="sep">✦</span><span>Reinforcement Learning</span><span class="sep">✦</span><span>OpenCV · EasyOCR</span><span class="sep">✦</span><span>Firebase</span><span class="sep">✦</span><span>VLSI Design</span><span class="sep">✦</span><span>Telecom Networks</span><span class="sep">✦</span><span>Python · C</span><span class="sep">✦</span>
+    <span>FPGA Design</span><span class="sep">✦</span><span>MicroBlaze</span><span class="sep">✦</span><span>RTL / Verilog</span><span class="sep">✦</span><span>Raspberry Pi Pico H</span><span class="sep">✦</span><span>IoT Systems</span><span class="sep">✦</span><span>Reinforcement Learning</span><span class="sep">✦</span><span>OpenCV · EasyOCR</span><span class="sep">✦</span><span>Firebase</span><span class="sep">✦</span><span>VLSI Design</span><span class="sep">✦</span><span>Telecom Networks</span><span class="sep">✦</span><span>Python · C</span><span class="sep">✦</span>
   </div>
 </div>
 
@@ -278,6 +289,61 @@ footer span{color:var(--coral);}
 </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+<div class="experience-wrap">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label reveal">Work Experience</div>
+    <h2 class="section-title reveal">Real world.<br><em>Real systems.</em></h2>
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Intern Engineer</div>
+          <div class="exp-company">BSNL — Bharat Sanchar Nigam Limited, Vellore</div>
+          <div class="exp-meta">July 2025 – August 2025 · Electronics & Communication Dept.</div>
+        </div>
+        <div>
+          <div class="exp-duration">30</div>
+          <div class="exp-duration-label">Days of field work</div>
+        </div>
+      </div>
+      <div class="exp-departments">
+        <div class="exp-dept">
+          <span class="exp-dept-icon">📞</span>
+          <div class="exp-dept-name">Switching</div>
+          <div class="exp-dept-desc">Observed how telephone exchanges route calls and manage subscriber data in real time.</div>
+        </div>
+        <div class="exp-dept">
+          <span class="exp-dept-icon">📶</span>
+          <div class="exp-dept-name">Transmission</div>
+          <div class="exp-dept-desc">Learned multiplexing, microwave & fiber signal transmission, and high-capacity data flow.</div>
+        </div>
+        <div class="exp-dept">
+          <span class="exp-dept-icon">🌐</span>
+          <div class="exp-dept-name">Broadband & OFC</div>
+          <div class="exp-dept-desc">Practiced fiber splicing, used OTDR & optical power meters, studied FTTH architecture.</div>
+        </div>
+        <div class="exp-dept">
+          <span class="exp-dept-icon">📡</span>
+          <div class="exp-dept-name">BTS & Towers</div>
+          <div class="exp-dept-desc">Field visit to outdoor BTS — antenna configurations, GSM architecture, LTE upgrades, and signal testing.</div>
+        </div>
+      </div>
+      <div class="exp-highlights">
+        <span class="exp-highlight">Fiber Splicing</span>
+        <span class="exp-highlight">OTDR · VFL · Power Meter</span>
+        <span class="exp-highlight">GSM / LTE Architecture</span>
+        <span class="exp-highlight">BTS Testing</span>
+        <span class="exp-highlight">VRLA Battery Systems</span>
+        <span class="exp-highlight">IP Networking</span>
+        <span class="exp-highlight">FTTH Deployment</span>
+        <span class="exp-highlight">Field Operations</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
 <div class="projects-wrap">
@@ -286,30 +352,20 @@ footer span{color:var(--coral);}
     <h2 class="section-title">Four projects.<br><em>Real systems.</em></h2>
   </div>
   <div class="projects-grid">
-    <!-- FLAGSHIP -->
     <div class="project-card-flagship reveal">
       <div class="flagship-inner">
         <div>
-          <div class="flagship-badge">Flagship Project</div>
+          <div class="flagship-badge">Flagship Project · Capstone</div>
           <h3 class="flagship-title">AI-Assisted Dynamic Voltage & Frequency Scaling</h3>
-          <p class="flagship-desc">My capstone — a Reinforcement Learning-powered DVFS system on a Basys 3 FPGA using MicroBlaze soft-core processor. The RL agent learns to dynamically scale voltage and frequency based on real-time workload, achieving significant power reduction without sacrificing performance. Implemented end-to-end from RTL design to Python simulation, with a 60-page report and full viva preparation.</p>
+          <p class="flagship-desc">A Reinforcement Learning-powered DVFS system implemented on a Basys 3 FPGA using MicroBlaze soft-core processor. The RL agent learns to dynamically scale voltage and frequency based on real-time workload — achieving significant power reduction without sacrificing performance. Delivered end-to-end: RTL design, Python simulation, 60-page technical report, and full viva presentation.</p>
           <div class="project-tech" style="margin-top:1rem;">
             <span class="tech-chip">MicroBlaze</span><span class="tech-chip">Vivado/Vitis</span><span class="tech-chip">Python RL</span><span class="tech-chip">Basys 3 FPGA</span><span class="tech-chip">C</span><span class="tech-chip">DVFS</span>
           </div>
         </div>
         <div class="flagship-right">
-          <div class="flagship-stat">
-            <div class="flagship-stat-num">55.8%</div>
-            <div class="flagship-stat-label">Power Savings Achieved</div>
-          </div>
-          <div class="flagship-stat">
-            <div class="flagship-stat-num">500</div>
-            <div class="flagship-stat-label">RL Training Episodes</div>
-          </div>
-          <div class="flagship-stat">
-            <div class="flagship-stat-num">60 pg</div>
-            <div class="flagship-stat-label">Technical Report</div>
-          </div>
+          <div class="flagship-stat"><div class="flagship-stat-num">55.8%</div><div class="flagship-stat-label">Power Savings Achieved</div></div>
+          <div class="flagship-stat"><div class="flagship-stat-num">500</div><div class="flagship-stat-label">RL Training Episodes</div></div>
+          <div class="flagship-stat"><div class="flagship-stat-num">60 pg</div><div class="flagship-stat-label">Technical Report</div></div>
         </div>
       </div>
     </div>
@@ -342,47 +398,27 @@ footer span{color:var(--coral);}
 <!-- SKILLS -->
 <section id="skills">
 <div class="skills-wrap">
-  <div class="section-label reveal">What I Work With</div>
-  <h2 class="section-title reveal">My <em>toolkit</em></h2>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-label reveal">What I Work With</div>
+    <h2 class="section-title reveal">My <em>toolkit</em></h2>
+  </div>
   <div class="skills-grid">
     <div class="skill-group reveal">
       <div class="skill-group-title"><span class="skill-dot" style="background:var(--coral);"></span>FPGA & VLSI</div>
       <div class="skill-chips">
-        <span class="skill-chip chip-coral">Verilog</span>
-        <span class="skill-chip chip-coral">RTL Design</span>
-        <span class="skill-chip chip-coral">FPGA (Basys 3)</span>
-        <span class="skill-chip chip-coral">MicroBlaze</span>
-        <span class="skill-chip chip-coral">Vivado</span>
-        <span class="skill-chip chip-coral">Vitis</span>
-        <span class="skill-chip chip-coral">VLSI Design</span>
-        <span class="skill-chip chip-coral">Digital Logic</span>
-        <span class="skill-chip chip-coral">Sequential Circuits</span>
+        <span class="skill-chip chip-coral">Verilog</span><span class="skill-chip chip-coral">RTL Design</span><span class="skill-chip chip-coral">FPGA (Basys 3)</span><span class="skill-chip chip-coral">MicroBlaze</span><span class="skill-chip chip-coral">Vivado</span><span class="skill-chip chip-coral">Vitis</span><span class="skill-chip chip-coral">VLSI Design</span><span class="skill-chip chip-coral">Digital Logic</span><span class="skill-chip chip-coral">Sequential Circuits</span>
       </div>
     </div>
     <div class="skill-group reveal">
       <div class="skill-group-title"><span class="skill-dot" style="background:var(--teal);"></span>IoT & Embedded</div>
       <div class="skill-chips">
-        <span class="skill-chip chip-teal">Raspberry Pi Pico H</span>
-        <span class="skill-chip chip-teal">Firebase</span>
-        <span class="skill-chip chip-teal">Sensors & Actuators</span>
-        <span class="skill-chip chip-teal">Servo Control</span>
-        <span class="skill-chip chip-teal">HC-SR04</span>
-        <span class="skill-chip chip-teal">Buzzer / LED</span>
-        <span class="skill-chip chip-teal">Networking</span>
-        <span class="skill-chip chip-teal">Optical Fiber</span>
+        <span class="skill-chip chip-teal">Raspberry Pi Pico H</span><span class="skill-chip chip-teal">Firebase</span><span class="skill-chip chip-teal">Sensors & Actuators</span><span class="skill-chip chip-teal">Servo Control</span><span class="skill-chip chip-teal">HC-SR04</span><span class="skill-chip chip-teal">Buzzer / LED</span><span class="skill-chip chip-teal">Networking</span><span class="skill-chip chip-teal">Optical Fiber</span>
       </div>
     </div>
     <div class="skill-group reveal">
       <div class="skill-group-title"><span class="skill-dot" style="background:var(--lavender);"></span>AI & Software</div>
       <div class="skill-chips">
-        <span class="skill-chip chip-lavender">Python</span>
-        <span class="skill-chip chip-lavender">C</span>
-        <span class="skill-chip chip-lavender">OpenCV</span>
-        <span class="skill-chip chip-lavender">EasyOCR</span>
-        <span class="skill-chip chip-lavender">Reinforcement Learning</span>
-        <span class="skill-chip chip-lavender">Sentiment Analysis</span>
-        <span class="skill-chip chip-lavender">Firebase DB</span>
-        <span class="skill-chip chip-lavender">Web Stack</span>
+        <span class="skill-chip chip-lavender">Python</span><span class="skill-chip chip-lavender">C</span><span class="skill-chip chip-lavender">OpenCV</span><span class="skill-chip chip-lavender">EasyOCR</span><span class="skill-chip chip-lavender">Reinforcement Learning</span><span class="skill-chip chip-lavender">Sentiment Analysis</span><span class="skill-chip chip-lavender">Firebase DB</span><span class="skill-chip chip-lavender">Web Stack</span>
       </div>
     </div>
   </div>
@@ -392,43 +428,32 @@ footer span{color:var(--coral);}
 <!-- EDUCATION -->
 <section id="education">
 <div class="education-wrap">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="section-label reveal">Where I Learned</div>
-    <h2 class="section-title reveal">Academic <em>journey</em></h2>
-    <div class="education-timeline">
-
-      <div class="edu-item reveal">
-        <div class="edu-year"><span>8.14</span>CGPA · 2022–2026</div>
-        <div class="edu-content">
-          <div class="edu-degree">B.E. Electronics & Communication Engineering</div>
-          <div class="edu-school">P.T. Lee Chengalvaraya Naicker College of Engineering · Anna University · Vellore</div>
-          <div class="edu-tags">
-            <span class="edu-tag">VLSI Design</span>
-            <span class="edu-tag">Digital Electronics</span>
-            <span class="edu-tag">Embedded Systems</span>
-            <span class="edu-tag">Microprocessors</span>
-            <span class="edu-tag">Communication Networks</span>
-            <span class="edu-tag">Capstone: AI-Assisted DVFS on FPGA</span>
-          </div>
+  <div class="section-label reveal">Where I Learned</div>
+  <h2 class="section-title reveal">Academic <em>journey</em></h2>
+  <div class="education-timeline">
+    <div class="edu-item reveal">
+      <div class="edu-year"><span>8.14</span>CGPA · 2022–2026</div>
+      <div class="edu-content">
+        <div class="edu-degree">B.E. Electronics & Communication Engineering</div>
+        <div class="edu-school">P.T. Lee Chengalvaraya Naicker College of Engineering and Technology<br>Anna University · Kanchipuram · Vellore</div>
+        <div class="edu-tags">
+          <span class="edu-tag">VLSI Design</span><span class="edu-tag">Digital Electronics</span><span class="edu-tag">Embedded Systems</span><span class="edu-tag">Microprocessors</span><span class="edu-tag">Communication Networks</span><span class="edu-tag">Capstone: AI-Assisted DVFS on FPGA</span>
         </div>
       </div>
-
-      <div class="edu-item reveal">
-        <div class="edu-year"><span>83%</span>12th · 2022</div>
-        <div class="edu-content">
-          <div class="edu-degree">Higher Secondary Certificate</div>
-          <div class="edu-school">Camford Matric Higher Secondary School · Kaniyambadi, Vellore</div>
-        </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year"><span>83%</span>12th · 2022</div>
+      <div class="edu-content">
+        <div class="edu-degree">Higher Secondary Certificate</div>
+        <div class="edu-school">Camford Matric Higher Secondary School · Kaniyambadi, Vellore</div>
       </div>
-
-      <div class="edu-item reveal">
-        <div class="edu-year"><span>98%</span>10th · 2020</div>
-        <div class="edu-content">
-          <div class="edu-degree">Secondary School Certificate</div>
-          <div class="edu-school">Camford Matric Higher Secondary School · Kaniyambadi, Vellore</div>
-        </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year"><span>98%</span>10th · 2020</div>
+      <div class="edu-content">
+        <div class="edu-degree">Secondary School Certificate</div>
+        <div class="edu-school">Camford Matric Higher Secondary School · Kaniyambadi, Vellore</div>
       </div>
-
     </div>
   </div>
 </div>
@@ -440,16 +465,16 @@ footer span{color:var(--coral);}
   <div style="max-width:1200px;margin:0 auto;">
     <div class="section-label reveal">Beyond Engineering</div>
     <h2 class="section-title reveal">The other side<br>of <em>Lavanya</em></h2>
-    <p class="creative-intro reveal">Engineering is what I do. But this is who I am — dark words written at 2am, fantasy worlds between deadlines, sensors that finally blink and make everything worth it.</p>
+    <p class="creative-intro reveal">Engineering is what I do. But this is who I am — dark words written at 2am, worlds you can only reach through a book, and sensors that finally blink and make everything worth it.</p>
     <div class="creative-grid">
 
-      <!-- POETRY — special full-width treatment -->
+      <!-- POETRY — special wide card -->
       <div class="poetry-card reveal">
         <div class="poetry-inner">
           <div>
             <span class="poetry-icon">🖊️</span>
             <h3 class="poetry-title">Poetry & Writing</h3>
-            <p class="poetry-desc">I write when feelings get too loud to ignore. Dark, romantic, raw — about hurt, healing, mental health, and the things that are hard to say out loud. Writing is my most honest language. The one place where being a little broken is exactly right.</p>
+            <p class="poetry-desc">I write when feelings get too loud to ignore — dark, romantic, raw. Mostly about hurt, healing, and the quiet weight of mental health. Writing is my most honest language. The one place where being a little broken is exactly right.</p>
           </div>
           <div class="poetry-sample">
             "The things I can't say<br>become the lines I write —<br>dark enough to feel real,<br>honest enough to hurt."
@@ -457,40 +482,51 @@ footer span{color:var(--coral);}
         </div>
       </div>
 
+      <!-- READING — rewritten -->
       <div class="creative-card c-lavender reveal">
         <span class="creative-icon">📚</span>
         <h3 class="creative-title">Reading Fiction</h3>
-        <p class="creative-desc">Fantasy romance is my escape — ACOTAR, dark romance, the Mindfuck series. Also a sucker for thrillers like The Da Vinci Code. Ana Huang, Catherine Maura. I read for worlds, tension, and characters who feel too real.</p>
-        <p class="creative-quote">ACOTAR · Haunting Adeline · Da Vinci Code</p>
+        <p class="creative-desc">Fantasy romance is my escape hatch from reality — the kind with magic systems, slow burns, and characters who ruin you (ACOTAR, Haunting Adeline, Mindfuck Series). I also love thrillers that mess with your head (The Da Vinci Code), and everything in between — Verity, the Twisted Series. If it has tension, I'm in.</p>
+        <p class="creative-quote">ACOTAR · Haunting Adeline · Verity · Da Vinci Code</p>
       </div>
 
       <div class="creative-card c-amber reveal">
         <span class="creative-icon">🎬</span>
         <h3 class="creative-title">Movies & Series</h3>
-        <p class="creative-desc">Romcoms and sitcoms are my comfort — Modern Family, Big Bang Theory. But I go deep: Vampire Diaries, Game of Thrones, Euphoria, Normal People. I feel everything I watch.</p>
+        <p class="creative-desc">Romcoms and sitcoms are my comfort — Modern Family and Big Bang Theory on repeat. But I also go deep: Vampire Diaries, Game of Thrones, Euphoria, Normal People. I feel everything I watch, which is probably a problem.</p>
         <p class="creative-quote">GOT · Euphoria · Normal People · Modern Family</p>
       </div>
 
       <div class="creative-card c-coral reveal">
         <span class="creative-icon">🎨</span>
         <h3 class="creative-title">Acrylic Painting</h3>
-        <p class="creative-desc">During the pandemic I painted — acrylic on canvas, whatever was in my head. No rules, no references. Just feeling translated into colour. One of those rare periods where creating felt essential.</p>
+        <p class="creative-desc">During the pandemic, I painted — acrylic on canvas, whatever was in my head at that moment. No rules, no references. Just feeling translated into colour. One of those rare periods where creating felt essential and urgent.</p>
         <p class="creative-quote">"Paint what you feel, not what you see."</p>
       </div>
 
       <div class="creative-card c-sage reveal">
         <span class="creative-icon">♟️</span>
         <h3 class="creative-title">Chess</h3>
-        <p class="creative-desc">730 rating and climbing. I play for the thrill — the strategy, the patterns, the quiet satisfaction of a well-placed move three turns ahead. Casual but competitive when it counts.</p>
+        <p class="creative-desc">730 rating and climbing. I play for the thrill of it — the strategy, the patterns, the quiet satisfaction of a move that was three turns in the making. Casual on most days, competitive when it counts.</p>
         <p class="creative-quote">730 rating · Online & board · Always improving</p>
       </div>
 
+      <!-- HARDWARE TINKERING — full width, rewritten -->
       <div class="tinker-card reveal">
         <div class="tinker-icon">🔌</div>
         <div>
-          <h3 class="tinker-title">Hardware Tinkering</h3>
-          <p class="tinker-desc">I have a kit at home — Raspberry Pi Pico H, ultrasonic sensors, buzzers, LEDs, servos. When I wire something up and that output finally fires, it's genuinely euphoric. That feeling is exactly why I became an engineer.</p>
-          <span class="tinker-tag">Raspberry Pi Pico H · Sensors · Just for joy</span>
+          <h3 class="tinker-title">Hardware Tinkering — The Euphoric Kind</h3>
+          <p class="tinker-desc">I have a full kit at home and I use it. Raspberry Pi Pico H as the brain, wired up to whatever sensor or component catches my curiosity that day — ultrasonic distance sensors, IR sensors, DHT11 temperature modules, buzzers, LEDs, servo motors, push buttons, resistors, breadboards, jumper wires. The whole mess. When everything's connected and that output finally fires — that moment is genuinely euphoric. No word for it except that. That feeling is exactly why I became an engineer.</p>
+          <div class="tinker-tags">
+            <span class="tinker-tag">Raspberry Pi Pico H</span>
+            <span class="tinker-tag">Ultrasonic Sensors</span>
+            <span class="tinker-tag">IR Sensors</span>
+            <span class="tinker-tag">DHT11</span>
+            <span class="tinker-tag">Servo Motors</span>
+            <span class="tinker-tag">LEDs & Buzzers</span>
+            <span class="tinker-tag">Breadboard Circuits</span>
+            <span class="tinker-tag">Just for joy</span>
+          </div>
         </div>
       </div>
 
@@ -541,7 +577,7 @@ document.querySelectorAll('.nav-links a').forEach(link=>{
     if(target)target.scrollIntoView({behavior:'smooth'});
   });
 });
-const sectionIds=['about','projects','skills','education','creative','contact'];
+const sectionIds=['about','experience','projects','skills','education','creative','contact'];
 const navLinks=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
   let current='';
